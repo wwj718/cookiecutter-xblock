@@ -3,44 +3,21 @@
         
          <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="{{cookiecutter.repo_name}}_edit_display_name">Display Name</label>
-                <input class="input setting-input" id="{{cookiecutter.repo_name}}_edit_display_name" value="{{ display_name }}" type="text">
+                <label class="label setting-label" for="edit_display_name">Display Name</label>
+                <input class="input setting-input" id="edit_display_name" value="display_name" type="text">
             </div>
             <span class="tip setting-help">This name appears in the horizontal navigation at the top of the page.</span>
         </li>
       
-
+        [[% for field in fields %]]
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="{{cookiecutter.repo_name}}_edit_iframe">Video iframe</label>
-                <input class="input setting-input" id="{{cookiecutter.repo_name}}_edit_iframe" value="{{ iframe }}" type="text">
+                <label class="label setting-label" for="edit_<<%field%>>">Video iframe</label>
+                <input class="input setting-input" id="edit_<<%field%>>" value="<<% field %>>" type="text">
             </div>
             <span class="tip setting-help">The  iframe for your video.</span>
         </li>
-        
-    <!--
-        <li class="field comp-setting-entry is-set">
-            <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="{{cookiecutter.repo_name}}_edit_file_id">Video vid</label>
-                <input class="input setting-input" id="{{cookiecutter.repo_name}}_edit_file_id" value="{{ file_id }}" type="text">
-            </div>
-            <span class="tip setting-help">The vid for your video.</span>
-        </li>
- 
-        <li class="field comp-setting-entry is-set">
-            <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="{{cookiecutter.repo_name}}_edit_width">width</label>
-                <input class="input setting-input" id="{{cookiecutter.repo_name}}_edit_width" value="{{ width }}" type="text" placeholder="600">
-            </div>
-            <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="{{cookiecutter.repo_name}}_edit_height">height</label>
-                <input class="input setting-input" id="{{cookiecutter.repo_name}}_edit_height" value="{{ height }}" type="text" placeholder="372">
-            </div>
-            <span class="tip setting-help">width and height.</span>
-        </li>
-    </ul>
-        -->           
-    
+        [[% endfor %]] 
     <div class="xblock-actions">
         <ul>
             <li class="action-item">

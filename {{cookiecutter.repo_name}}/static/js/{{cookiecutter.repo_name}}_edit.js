@@ -7,11 +7,10 @@ function {{cookiecutter.repo_name}}XBlockInitStudio(runtime, element) {
 
     $(element).find('.action-save').bind('click', function() {
         var data = {
-            'display_name': $('#{{cookiecutter.repo_name}}_edit_display_name').val(),
-//            'file_id': $('#{{cookiecutter.repo_name}}_edit_file_id').val(),
-            'iframe': $('#{{cookiecutter.repo_name}}_edit_iframe').val(),
-//            'width': $('#{{cookiecutter.repo_name}}_edit_width').val(),
-//            'height': $('#{{cookiecutter.repo_name}}_edit_height').val(),
+            [[% for field in fields %]]
+            '<<% field %>>': $('#edit_<<%field%>>').val(),
+            [[% endfor %]]
+            'display_name': $('#edit_display_name').val()
         };
 
         runtime.notify('save', {state: 'start'});

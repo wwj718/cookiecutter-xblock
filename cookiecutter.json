@@ -5,5 +5,8 @@
     "email": "Your email",
     "description": "A short description of the project.",
     "year": "Current year",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "_copy_without_render" :  [
+            "do_not_render.html"
+    ]
 }

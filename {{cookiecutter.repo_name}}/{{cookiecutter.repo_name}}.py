@@ -33,16 +33,6 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         help="iframe")
 
 
-    app_id = String(display_name="video client_id",
-	default="{{cookiecutter.repo_name}}",
-	scope=Scope.content, #Scope.content和Scope.settings不同在于，(可见性)本课多处可用
-	help="The  client_id for your video.")
-
-    file_id = String(display_name="video vid",
-	default="{{cookiecutter.repo_name}}",
-	scope=Scope.content, #Scope.content和Scope.settings不同在于，(可见性)本课多处可用
-	help="The vid for your video.")
-
 
     width = Integer(display_name="Video player width",
 	default="560",
@@ -79,12 +69,10 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         when viewing courses.
         """
         context = {
-            'display_name': self.display_name,
-            'iframe': self.iframe,
-            'app_id' : self.app_id,
-            'file_id': self.file_id,
-            'width': self.width,
-            'height': self.height
+            [[%for field in fields%]]
+            '<<%field%>>': self.<<%field%>>,
+            [[%endfor%]]
+            'display_name': self.display_name
         }
         html = self.render_template('static/html/{{cookiecutter.repo_name}}_view.html', context)
         frag = Fragment(html)
@@ -98,12 +86,10 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         when editing the XBlock.
         """
         context = {
-            'display_name': self.display_name,
-            'iframe': self.iframe,
-            'app_id' : self.app_id,
-            'file_id': self.file_id,
-            'width': self.width,
-            'height': self.height
+            [[%for field in fields%]]
+            '<<%field%>>': self.<<%field%>>,
+            [[%endfor%]]
+            'display_name': self.display_name
         }
         html = self.render_template('static/html/{{cookiecutter.repo_name}}_edit.html', context)
 
@@ -117,13 +103,11 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         """
         The saving handler.
         """
-        #self.display_name = data['display_name']
-        self.iframe = data['iframe']
-        #self.app_id = data['app_id']
-        #self.file_id = data['file_id']
-        #self.width = data['width']
-        #self.height = data['height']
+        [[%for field in fields%]]
+        self.<<%field%>> = data['<<%field%>>']
+        [[%endfor%]]
 
+        self.display_name = data['display_name']
         return {
             'result': 'success',
         }
@@ -131,10 +115,11 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
     @XBlock.json_handler
     def get_params(self, data, suffix=''):
         '''called when {{cookiecutter.repo_name}} init'''
-        return {"file_id":self.file_id,
-                "app_id":self.app_id,
-                "width":self.width,
-                "height":self.height
+        return {
+            [[%for field in fields%]]
+            '<<%field%>>': self.<<%field%>>,
+            [[%endfor%]]
+            'display_name': self.display_name
                 }
 
     @staticmethod

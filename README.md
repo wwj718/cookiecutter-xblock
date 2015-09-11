@@ -1,8 +1,10 @@
 #{{cookiecutter.repo_name}}XBLock 
 by wwj718:<wuwenjie718@gmail.com>
 
+convention over configuration
 
 #安装（平台级别的设置）
+n over configuration
 *  sudo su edxapp -s /bin/bash
 *  cd ~
 *  source edxapp_env
