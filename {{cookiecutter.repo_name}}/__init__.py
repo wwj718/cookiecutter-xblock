@@ -1,1 +1,1 @@
-from .mediasite import mediasiteXBlock
+from .{{cookiecutter.repo_name}} import {{cookiecutter.repo_name}}XBlock
