@@ -12,7 +12,11 @@ by wwj718:<wuwenjie718@gmail.com>
 #在studio中设置(课程级别的设置)
 进入到"Settings" ⇒ "Advanced Settings",将"{{cookiecutter.repo_name}}"添加到Advanced Module List
 
-#使用方法（结合优酷）
+#Usage
+pip install cookiecutter
 
+cookiecutter http://git.oschina.net/wuwenjie/cookiecutter-XBLock
+
+回答相应问题即可
 
 #TIDO
