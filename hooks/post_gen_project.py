@@ -36,7 +36,7 @@ for html_file in html_files:
     template = env.get_template(html_file)
     output =  template.render(fields=fields)
     html_file_realpsth =  os.path.join(html_directory,html_file)
-    output = re.sub(r'value="(?P<field>[^"]*)"',"value=\"{quarantine{\g<field>}quarantine}\"",str(output))
+    output = re.sub(r'value="(?P<field>[^"]*)"',"value=\"${quarantine\g<field>quarantine}\"",str(output))
     #remove quarantine
     output = re.sub(r'quarantine',"",str(output))
     with open(html_file_realpsth, 'w') as f:

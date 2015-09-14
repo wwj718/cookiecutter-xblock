@@ -17,6 +17,9 @@ from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String, Boolean #List, Set, Float, Dict
 from xblock.fragment import Fragment
 
+from mako.lookup import TemplateLookup
+from lazy import lazy
+
 class {{cookiecutter.repo_name}}XBlock(XBlock):
 
     '''
@@ -50,6 +53,8 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
     '''
     Util functions
     '''
+
+    '''
     def load_resource(self, resource_path):
         """
         Gets the content of a resource
@@ -63,6 +68,25 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         """
         template_str = self.load_resource(template_path)
         return Template(template_str).render(Context(context))
+    '''
+
+    @lazy
+    def template_lookup(self):
+        return TemplateLookup(
+            directories=[pkg_resources.resource_filename(__name__, '.')],input_encoding="utf-8"
+        )
+
+    def load_resource(self, resource_path):
+        """Handy helper for getting resources from our kit."""
+        data = pkg_resources.resource_string(__name__, resource_path)
+        return data.decode("utf8")
+
+    def render_template(self, template_path, context={}):
+        """
+        """
+        #template_str = self.resource_string(template_path)
+        return self.template_lookup.get_template(template_path).render_unicode(**context)
+
 
     '''
     Main functions
