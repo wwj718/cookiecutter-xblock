@@ -1,4 +1,4 @@
-#{{cookiecutter.repo_name}}XBLock 
+#cookiecutter-xblock
 ---
 
 *  author: wwj718
