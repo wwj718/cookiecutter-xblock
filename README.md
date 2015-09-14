@@ -1,5 +1,9 @@
 #{{cookiecutter.repo_name}}XBLock 
-by wwj718:<wuwenjie718@gmail.com>
+---
+author: wwj718
+email: <wuwenjie718@gmail.com>
+myblog: <wwj718.github.io>
+---
 
 convention over configuration
 

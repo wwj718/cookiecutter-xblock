@@ -1,15 +1,20 @@
 #coding=utf-8
-#author: wwj718
-#author_email: wuwenjie718@gmail.com
-#author_blog: wwj718.github.io
+#author_name: {{cookiecutter.author_name}}
+#author_email: {{cookiecutter.email}}
 
-""" {{cookiecutter.repo_name}}XBlock main Python class"""
+
+"""
+{{cookiecutter.repo_name}}XBlock main Python class
+VERSION: {{cookiecutter.version}}
+{{cookiecutter.description}}
+xblock-tutorial: http://edx.readthedocs.org/projects/xblock-tutorial/en/latest/concepts/index.html
+"""
 
 import pkg_resources
 from django.template import Context, Template
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, String, Boolean
+from xblock.fields import Scope, Integer, String, Boolean #List, Set, Float, Dict
 from xblock.fragment import Fragment
 
 class {{cookiecutter.repo_name}}XBlock(XBlock):
@@ -21,27 +26,26 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
 
     '''
     Fields
+    #scope
+    *  Scope.content : Block definition / No user
+    *  Scope.settings : Block usage / No user
+    *  Scope.user_state : Block usage / One user
+    *  Scope.preferences : Block type / One user
+    *  Scope.user_info : All blocks / One user
+    *  Scope.user_state_summary : Block usage / All users
     '''
     display_name = String(display_name="Display Name",
-        default="{{cookiecutter.repo_name}} player",
+        default="{{cookiecutter.repo_name}}",
         scope=Scope.settings,
         help="This name appears in the horizontal navigation at the top of the page.")
 
-    iframe = String(display_name="iframe",
-        default="{{cookiecutter.repo_name}} player",
+    [[%for field in fields%]]
+    <<%field%>> = String(display_name="<<%field%>>",
+        default="<<%field%>>",
         scope=Scope.settings,
-        help="iframe")
+        help="")
+    [[%endfor%]]
 
-
-
-    width = Integer(display_name="Video player width",
-	default="560",
-	scope=Scope.content,
-	help="The width for your video player.")
-    height = Integer(display_name="Video player height",
-	default="320",
-	scope=Scope.content,
-	help="The height for your video player.")
 
     '''
     Util functions
@@ -62,6 +66,9 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
 
     '''
     Main functions
+    #frag add :
+        *  frag.add_javascript_url("http://echarts.baidu.com/doc/asset/js/codemirror.js")
+        *  frag.add_css_url("http://echarts.baidu.com/doc/asset/js/codemirror.css")
     '''
     def student_view(self, context=None):
         """
@@ -76,6 +83,7 @@ class {{cookiecutter.repo_name}}XBlock(XBlock):
         }
         html = self.render_template('static/html/{{cookiecutter.repo_name}}_view.html', context)
         frag = Fragment(html)
+        #
         frag.add_javascript(self.load_resource("static/js/{{cookiecutter.repo_name}}_view.js"))
         frag.initialize_js('{{cookiecutter.repo_name}}XBlockInitView')
         return frag

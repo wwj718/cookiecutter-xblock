@@ -7,8 +7,12 @@ from jinja2 import Environment,FileSystemLoader
 import re
 import glob
 
-#fake data
-fields=["name","age","school"]
+############ config fields
+#fields=["name","age","school"]
+fields = {{cookiecutter.fields}}
+############
+
+#get cookiecutter.json
 
 project_directory = os.path.realpath(os.path.curdir) #the generate project
 html_directory = os.path.join(
@@ -31,9 +35,10 @@ for html_file in html_files:
     #print html_file
     template = env.get_template(html_file)
     output =  template.render(fields=fields)
-    #replace value for {{field}}
     html_file_realpsth =  os.path.join(html_directory,html_file)
-    #output = re.sub(r'value=\"(?P<field>[^\"\']*)\"',r"{{\g<field>}}",str(output))
+    output = re.sub(r'value="(?P<field>[^"]*)"',"value=\"{quarantine{\g<field>}quarantine}\"",str(output))
+    #remove quarantine
+    output = re.sub(r'quarantine',"",str(output))
     with open(html_file_realpsth, 'w') as f:
         f.write(output)
 

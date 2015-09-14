@@ -6,6 +6,7 @@
     "description": "A short description of the project.",
     "year": "Current year",
     "version": "0.1.0",
+    "fields": ["name","age","school"],
     "_copy_without_render" :  [
             "do_not_render.html"
     ]
