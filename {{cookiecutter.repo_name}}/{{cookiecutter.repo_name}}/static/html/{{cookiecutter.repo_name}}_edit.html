@@ -12,7 +12,7 @@
         [[% for field in fields %]]
         <li class="field comp-setting-entry is-set">
             <div class="wrapper-comp-setting">
-                <label class="label setting-label" for="edit_<<%field%>>">Video iframe</label>
+                <label class="label setting-label" for="edit_<<%field%>>"><<%field%>></label>
                 <input class="input setting-input" id="edit_<<%field%>>" value="<<% field %>>" type="text">
             </div>
             <span class="tip setting-help">The <<% field %>> for your {{cookiecutter.repo_name}}</span>

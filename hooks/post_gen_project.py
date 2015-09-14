@@ -17,11 +17,11 @@ fields = {{cookiecutter.fields}}
 project_directory = os.path.realpath(os.path.curdir) #the generate project
 html_directory = os.path.join(
                 project_directory,
-                'static/html'
+                '{{cookiecutter.repo_name}}/static/html'
                 )
 js_directory = os.path.join(
                 project_directory,
-                'static/js'
+                '{{cookiecutter.repo_name}}/static/js'
                 )
 
 
@@ -54,8 +54,8 @@ for js_file in js_files:
         f.write(output)
 
 #render py
-py_files = glob.glob("*.py")
-#print py_files
+py_files = glob.glob("{{cookiecutter.repo_name}}/*.py")
+print py_files
 for py_file in py_files:
     template = env.get_template(py_file)
     output =  template.render(fields=fields)
