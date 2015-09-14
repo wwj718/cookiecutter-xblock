@@ -13,7 +13,7 @@
 #Usage
 pip install cookiecutter
 
-cookiecutter http://git.oschina.net/wuwenjie/cookiecutter-XBLock
+cookiecutter http://git.oschina.net/wuwenjie/cookiecutter-xblock
 
 Answer the question to bulid it
 
