@@ -15,4 +15,4 @@ cookiecutter http://git.oschina.net/wuwenjie/cookiecutter-XBLock
 
 Answer the question to bulid it
 
-#TIDO
+#TODO
