@@ -5,7 +5,7 @@ email: <wuwenjie718@gmail.com>
 myblog: <wwj718.github.io>
 ---
 
-convention over configuration
+*convention over configuration*
 
 
 #Usage
@@ -13,6 +13,6 @@ pip install cookiecutter
 
 cookiecutter http://git.oschina.net/wuwenjie/cookiecutter-XBLock
 
-回答相应问题即可
+Answer the question to bulid it
 
 #TIDO
