@@ -2,7 +2,7 @@
 ---
 author: wwj718
 email: <wuwenjie718@gmail.com>
-myblog: <wwj718.github.io>
+myblog: [wwj718.github.io](wwj718.github.io)
 ---
 
 *convention over configuration*
